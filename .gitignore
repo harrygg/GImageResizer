@@ -27,6 +27,11 @@ $RECYCLE.BIN/
 
 # Icon must ends with two \r.
 Icon
+*GImageResize.vshost.exe.manifest
+*GImageResizer.pdb
+*GImageResizer.vshost.exe
+*SimpleImageResizer.vshost.exe.manifest
+\obj
 
 # Thumbnails
 ._*

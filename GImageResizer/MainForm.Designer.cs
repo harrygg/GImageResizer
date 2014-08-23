@@ -30,30 +30,29 @@
     {
       this.components = new System.ComponentModel.Container();
       this.resize_btn = new System.Windows.Forms.Button();
-      this.textBoxWidth = new System.Windows.Forms.TextBox();
-      this.textBoxHeight = new System.Windows.Forms.TextBox();
-      this.textBoxPrefix = new System.Windows.Forms.TextBox();
       this.labelPrefix = new System.Windows.Forms.Label();
       this.labelSuffix = new System.Windows.Forms.Label();
-      this.textBoxSuffix = new System.Windows.Forms.TextBox();
       this.label3 = new System.Windows.Forms.Label();
       this.label4 = new System.Windows.Forms.Label();
-      this.keepAspect = new System.Windows.Forms.CheckBox();
-      this.fromDir = new System.Windows.Forms.TextBox();
       this.label5 = new System.Windows.Forms.Label();
       this.label6 = new System.Windows.Forms.Label();
-      this.toDir = new System.Windows.Forms.TextBox();
-      this.checkBoxUseCurrentDir = new System.Windows.Forms.CheckBox();
       this.bgWorker = new System.ComponentModel.BackgroundWorker();
       this.progressBar = new System.Windows.Forms.ProgressBar();
       this.browseFromDir_btn = new System.Windows.Forms.Button();
       this.browseToDir_btn = new System.Windows.Forms.Button();
       this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
       this.panel1 = new System.Windows.Forms.Panel();
+      this.fromDir = new System.Windows.Forms.TextBox();
       this.panel2 = new System.Windows.Forms.Panel();
+      this.toDir = new System.Windows.Forms.TextBox();
       this.panel3 = new System.Windows.Forms.Panel();
       this.checkBoxRenameImages = new System.Windows.Forms.CheckBox();
       this.label7 = new System.Windows.Forms.Label();
+      this.textBoxWidth = new System.Windows.Forms.TextBox();
+      this.textBoxHeight = new System.Windows.Forms.TextBox();
+      this.textBoxPrefix = new System.Windows.Forms.TextBox();
+      this.textBoxSuffix = new System.Windows.Forms.TextBox();
+      this.checkBoxKeepAspect = new System.Windows.Forms.CheckBox();
       this.cancel_btn = new System.Windows.Forms.Button();
       this.logoPanel = new System.Windows.Forms.Panel();
       this.logoInnerPanel = new System.Windows.Forms.Panel();
@@ -70,11 +69,12 @@
       this.chooseFont_btn = new System.Windows.Forms.Button();
       this.checkBoxUseLogo = new System.Windows.Forms.CheckBox();
       this.label8 = new System.Windows.Forms.Label();
-      this.fontDialog = new System.Windows.Forms.FontDialog();
-      this.checkBoxConcurrent = new System.Windows.Forms.CheckBox();
-      this.colorDialog1 = new System.Windows.Forms.ColorDialog();
       this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
       this.panel4 = new System.Windows.Forms.Panel();
+      this.checkBoxUseCurrentDir = new System.Windows.Forms.CheckBox();
+      this.checkBoxConcurrent = new System.Windows.Forms.CheckBox();
+      this.fontDialog = new System.Windows.Forms.FontDialog();
+      this.colorDialog1 = new System.Windows.Forms.ColorDialog();
       this.panel1.SuspendLayout();
       this.panel2.SuspendLayout();
       this.panel3.SuspendLayout();
@@ -92,32 +92,6 @@
       this.resize_btn.Text = "Resize";
       this.resize_btn.UseVisualStyleBackColor = true;
       this.resize_btn.Click += new System.EventHandler(this.resize_btn_Click);
-      // 
-      // textBoxWidth
-      // 
-      this.textBoxWidth.Location = new System.Drawing.Point(57, 25);
-      this.textBoxWidth.Name = "textBoxWidth";
-      this.textBoxWidth.Size = new System.Drawing.Size(46, 20);
-      this.textBoxWidth.TabIndex = 1;
-      this.textBoxWidth.Text = "1366";
-      // 
-      // textBoxHeight
-      // 
-      this.textBoxHeight.Enabled = false;
-      this.textBoxHeight.Location = new System.Drawing.Point(57, 51);
-      this.textBoxHeight.Name = "textBoxHeight";
-      this.textBoxHeight.Size = new System.Drawing.Size(46, 20);
-      this.textBoxHeight.TabIndex = 2;
-      this.textBoxHeight.Text = "1024";
-      // 
-      // textBoxPrefix
-      // 
-      this.textBoxPrefix.Enabled = false;
-      this.textBoxPrefix.Location = new System.Drawing.Point(57, 108);
-      this.textBoxPrefix.Name = "textBoxPrefix";
-      this.textBoxPrefix.Size = new System.Drawing.Size(100, 20);
-      this.textBoxPrefix.TabIndex = 3;
-      this.textBoxPrefix.MouseHover += new System.EventHandler(this.Prefix_MouseHover);
       // 
       // labelPrefix
       // 
@@ -140,15 +114,6 @@
       this.labelSuffix.Text = "Suffix";
       this.labelSuffix.MouseHover += new System.EventHandler(this.Suffix_MouseHover);
       // 
-      // textBoxSuffix
-      // 
-      this.textBoxSuffix.Enabled = false;
-      this.textBoxSuffix.Location = new System.Drawing.Point(57, 134);
-      this.textBoxSuffix.Name = "textBoxSuffix";
-      this.textBoxSuffix.Size = new System.Drawing.Size(100, 20);
-      this.textBoxSuffix.TabIndex = 6;
-      this.textBoxSuffix.MouseHover += new System.EventHandler(this.Suffix_MouseHover);
-      // 
       // label3
       // 
       this.label3.AutoSize = true;
@@ -167,28 +132,6 @@
       this.label4.TabIndex = 8;
       this.label4.Text = "Height";
       // 
-      // keepAspect
-      // 
-      this.keepAspect.AutoSize = true;
-      this.keepAspect.Checked = true;
-      this.keepAspect.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.keepAspect.Location = new System.Drawing.Point(117, 28);
-      this.keepAspect.Name = "keepAspect";
-      this.keepAspect.Size = new System.Drawing.Size(151, 17);
-      this.keepAspect.TabIndex = 9;
-      this.keepAspect.Text = "Keep original aspect ration";
-      this.keepAspect.UseVisualStyleBackColor = true;
-      this.keepAspect.CheckedChanged += new System.EventHandler(this.keepAspect_CheckedChanged);
-      // 
-      // fromDir
-      // 
-      this.fromDir.Location = new System.Drawing.Point(5, 20);
-      this.fromDir.Name = "fromDir";
-      this.fromDir.Size = new System.Drawing.Size(261, 20);
-      this.fromDir.TabIndex = 10;
-      this.fromDir.Tag = "";
-      this.fromDir.Text = "C:\\Users\\Public\\Pictures\\";
-      // 
       // label5
       // 
       this.label5.AutoSize = true;
@@ -206,26 +149,6 @@
       this.label6.Size = new System.Drawing.Size(180, 13);
       this.label6.TabIndex = 12;
       this.label6.Text = "Save the resized images to directory:";
-      // 
-      // toDir
-      // 
-      this.toDir.Location = new System.Drawing.Point(5, 21);
-      this.toDir.Name = "toDir";
-      this.toDir.Size = new System.Drawing.Size(261, 20);
-      this.toDir.TabIndex = 13;
-      this.toDir.Text = "C:\\Users\\Public\\Pictures\\resized";
-      // 
-      // checkBoxUseCurrentDir
-      // 
-      this.checkBoxUseCurrentDir.AutoSize = true;
-      this.checkBoxUseCurrentDir.Location = new System.Drawing.Point(5, 3);
-      this.checkBoxUseCurrentDir.Name = "checkBoxUseCurrentDir";
-      this.checkBoxUseCurrentDir.Size = new System.Drawing.Size(187, 17);
-      this.checkBoxUseCurrentDir.TabIndex = 14;
-      this.checkBoxUseCurrentDir.Text = "Get images from current directory?";
-      this.checkBoxUseCurrentDir.UseVisualStyleBackColor = true;
-      this.checkBoxUseCurrentDir.CheckedChanged += new System.EventHandler(this.UseCurrentDir_CheckedChanged);
-      this.checkBoxUseCurrentDir.MouseHover += new System.EventHandler(this.UseCurrentDir_MouseHover);
       // 
       // progressBar
       // 
@@ -264,6 +187,18 @@
       this.panel1.Size = new System.Drawing.Size(334, 45);
       this.panel1.TabIndex = 19;
       // 
+      // fromDir
+      // 
+      this.fromDir.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GImageResizer.Properties.Settings.Default, "fromDir", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+      this.fromDir.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", global::GImageResizer.Properties.Settings.Default, "fromDirEnabled", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+      this.fromDir.Enabled = global::GImageResizer.Properties.Settings.Default.fromDirEnabled;
+      this.fromDir.Location = new System.Drawing.Point(5, 20);
+      this.fromDir.Name = "fromDir";
+      this.fromDir.Size = new System.Drawing.Size(261, 20);
+      this.fromDir.TabIndex = 10;
+      this.fromDir.Tag = "";
+      this.fromDir.Text = global::GImageResizer.Properties.Settings.Default.fromDir;
+      // 
       // panel2
       // 
       this.panel2.Controls.Add(this.label6);
@@ -273,6 +208,15 @@
       this.panel2.Name = "panel2";
       this.panel2.Size = new System.Drawing.Size(334, 45);
       this.panel2.TabIndex = 20;
+      // 
+      // toDir
+      // 
+      this.toDir.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GImageResizer.Properties.Settings.Default, "toDir", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+      this.toDir.Location = new System.Drawing.Point(5, 21);
+      this.toDir.Name = "toDir";
+      this.toDir.Size = new System.Drawing.Size(261, 20);
+      this.toDir.TabIndex = 13;
+      this.toDir.Text = global::GImageResizer.Properties.Settings.Default.toDir;
       // 
       // panel3
       // 
@@ -285,7 +229,7 @@
       this.panel3.Controls.Add(this.textBoxPrefix);
       this.panel3.Controls.Add(this.labelSuffix);
       this.panel3.Controls.Add(this.textBoxSuffix);
-      this.panel3.Controls.Add(this.keepAspect);
+      this.panel3.Controls.Add(this.checkBoxKeepAspect);
       this.panel3.Controls.Add(this.label3);
       this.panel3.Controls.Add(this.label4);
       this.panel3.Location = new System.Drawing.Point(7, 133);
@@ -296,13 +240,15 @@
       // checkBoxRenameImages
       // 
       this.checkBoxRenameImages.AutoSize = true;
+      this.checkBoxRenameImages.Checked = global::GImageResizer.Properties.Settings.Default.renameImage;
+      this.checkBoxRenameImages.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GImageResizer.Properties.Settings.Default, "renameImage", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
       this.checkBoxRenameImages.Location = new System.Drawing.Point(7, 85);
       this.checkBoxRenameImages.Name = "checkBoxRenameImages";
       this.checkBoxRenameImages.Size = new System.Drawing.Size(108, 17);
       this.checkBoxRenameImages.TabIndex = 11;
       this.checkBoxRenameImages.Text = "Rename images?";
       this.checkBoxRenameImages.UseVisualStyleBackColor = true;
-      this.checkBoxRenameImages.CheckedChanged += new System.EventHandler(this.RenameImages_CheckedChanged);
+      this.checkBoxRenameImages.Click += new System.EventHandler(this.RenameImages_Click);
       this.checkBoxRenameImages.MouseHover += new System.EventHandler(this.RenameImages_MouseHover);
       // 
       // label7
@@ -314,6 +260,64 @@
       this.label7.Size = new System.Drawing.Size(133, 13);
       this.label7.TabIndex = 10;
       this.label7.Text = "New image properties:";
+      // 
+      // textBoxWidth
+      // 
+      this.textBoxWidth.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GImageResizer.Properties.Settings.Default, "imageWidth", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+      this.textBoxWidth.Location = new System.Drawing.Point(57, 25);
+      this.textBoxWidth.Name = "textBoxWidth";
+      this.textBoxWidth.Size = new System.Drawing.Size(46, 20);
+      this.textBoxWidth.TabIndex = 1;
+      this.textBoxWidth.Text = global::GImageResizer.Properties.Settings.Default.imageWidth;
+      // 
+      // textBoxHeight
+      // 
+      this.textBoxHeight.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GImageResizer.Properties.Settings.Default, "imageHeight", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+      this.textBoxHeight.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", global::GImageResizer.Properties.Settings.Default, "imageHeightEnabled", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+      this.textBoxHeight.Enabled = global::GImageResizer.Properties.Settings.Default.imageHeightEnabled;
+      this.textBoxHeight.Location = new System.Drawing.Point(57, 51);
+      this.textBoxHeight.Name = "textBoxHeight";
+      this.textBoxHeight.Size = new System.Drawing.Size(46, 20);
+      this.textBoxHeight.TabIndex = 2;
+      this.textBoxHeight.Text = global::GImageResizer.Properties.Settings.Default.imageHeight;
+      // 
+      // textBoxPrefix
+      // 
+      this.textBoxPrefix.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GImageResizer.Properties.Settings.Default, "imagePrefix", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+      this.textBoxPrefix.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", global::GImageResizer.Properties.Settings.Default, "imagePrefixEnabled", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+      this.textBoxPrefix.Enabled = global::GImageResizer.Properties.Settings.Default.imagePrefixEnabled;
+      this.textBoxPrefix.Location = new System.Drawing.Point(57, 108);
+      this.textBoxPrefix.Name = "textBoxPrefix";
+      this.textBoxPrefix.Size = new System.Drawing.Size(100, 20);
+      this.textBoxPrefix.TabIndex = 3;
+      this.textBoxPrefix.Text = global::GImageResizer.Properties.Settings.Default.imagePrefix;
+      this.textBoxPrefix.MouseHover += new System.EventHandler(this.Prefix_MouseHover);
+      // 
+      // textBoxSuffix
+      // 
+      this.textBoxSuffix.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GImageResizer.Properties.Settings.Default, "imageSuffix", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+      this.textBoxSuffix.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", global::GImageResizer.Properties.Settings.Default, "imageSuffixEnabled", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+      this.textBoxSuffix.Enabled = global::GImageResizer.Properties.Settings.Default.imageSuffixEnabled;
+      this.textBoxSuffix.Location = new System.Drawing.Point(57, 134);
+      this.textBoxSuffix.Name = "textBoxSuffix";
+      this.textBoxSuffix.Size = new System.Drawing.Size(100, 20);
+      this.textBoxSuffix.TabIndex = 6;
+      this.textBoxSuffix.Text = global::GImageResizer.Properties.Settings.Default.imageSuffix;
+      this.textBoxSuffix.MouseHover += new System.EventHandler(this.Suffix_MouseHover);
+      // 
+      // checkBoxKeepAspect
+      // 
+      this.checkBoxKeepAspect.AutoSize = true;
+      this.checkBoxKeepAspect.Checked = global::GImageResizer.Properties.Settings.Default.keepAspectRatio;
+      this.checkBoxKeepAspect.CheckState = System.Windows.Forms.CheckState.Checked;
+      this.checkBoxKeepAspect.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GImageResizer.Properties.Settings.Default, "keepAspectRatio", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+      this.checkBoxKeepAspect.Location = new System.Drawing.Point(117, 28);
+      this.checkBoxKeepAspect.Name = "checkBoxKeepAspect";
+      this.checkBoxKeepAspect.Size = new System.Drawing.Size(151, 17);
+      this.checkBoxKeepAspect.TabIndex = 9;
+      this.checkBoxKeepAspect.Text = "Keep original aspect ration";
+      this.checkBoxKeepAspect.UseVisualStyleBackColor = true;
+      this.checkBoxKeepAspect.Click += new System.EventHandler(this.keepAspect_Click);
       // 
       // cancel_btn
       // 
@@ -350,7 +354,8 @@
       this.logoInnerPanel.Controls.Add(this.labelPositionX);
       this.logoInnerPanel.Controls.Add(this.labelPositionY);
       this.logoInnerPanel.Controls.Add(this.chooseFont_btn);
-      this.logoInnerPanel.Enabled = false;
+      this.logoInnerPanel.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", global::GImageResizer.Properties.Settings.Default, "logoInnerPanelEnabled", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+      this.logoInnerPanel.Enabled = global::GImageResizer.Properties.Settings.Default.logoInnerPanelEnabled;
       this.logoInnerPanel.Location = new System.Drawing.Point(3, 47);
       this.logoInnerPanel.Name = "logoInnerPanel";
       this.logoInnerPanel.Size = new System.Drawing.Size(326, 114);
@@ -385,27 +390,31 @@
       // 
       // textBoxPositionY
       // 
+      this.textBoxPositionY.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GImageResizer.Properties.Settings.Default, "logoY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
       this.textBoxPositionY.Location = new System.Drawing.Point(67, 79);
       this.textBoxPositionY.Name = "textBoxPositionY";
       this.textBoxPositionY.Size = new System.Drawing.Size(40, 20);
       this.textBoxPositionY.TabIndex = 10;
-      this.textBoxPositionY.Text = "20";
+      this.textBoxPositionY.Text = global::GImageResizer.Properties.Settings.Default.logoY;
       this.textBoxPositionY.MouseHover += new System.EventHandler(this.PositionY_MouseHover);
       // 
       // logoText
       // 
+      this.logoText.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GImageResizer.Properties.Settings.Default, "logoText", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
       this.logoText.Location = new System.Drawing.Point(36, 3);
       this.logoText.Name = "logoText";
       this.logoText.Size = new System.Drawing.Size(171, 20);
       this.logoText.TabIndex = 3;
+      this.logoText.Text = global::GImageResizer.Properties.Settings.Default.logoText;
       // 
       // textBoxPositionX
       // 
+      this.textBoxPositionX.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GImageResizer.Properties.Settings.Default, "logoX", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
       this.textBoxPositionX.Location = new System.Drawing.Point(67, 55);
       this.textBoxPositionX.Name = "textBoxPositionX";
       this.textBoxPositionX.Size = new System.Drawing.Size(40, 20);
       this.textBoxPositionX.TabIndex = 9;
-      this.textBoxPositionX.Text = "20";
+      this.textBoxPositionX.Text = global::GImageResizer.Properties.Settings.Default.logoX;
       this.textBoxPositionX.MouseHover += new System.EventHandler(this.PositionX_MouseHover);
       // 
       // label9
@@ -460,13 +469,15 @@
       // checkBoxUseLogo
       // 
       this.checkBoxUseLogo.AutoSize = true;
+      this.checkBoxUseLogo.Checked = global::GImageResizer.Properties.Settings.Default.useLogo;
+      this.checkBoxUseLogo.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GImageResizer.Properties.Settings.Default, "useLogo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
       this.checkBoxUseLogo.Location = new System.Drawing.Point(7, 24);
       this.checkBoxUseLogo.Name = "checkBoxUseLogo";
       this.checkBoxUseLogo.Size = new System.Drawing.Size(214, 17);
       this.checkBoxUseLogo.TabIndex = 1;
       this.checkBoxUseLogo.Text = "Add custom text to images (watermark)?";
       this.checkBoxUseLogo.UseVisualStyleBackColor = true;
-      this.checkBoxUseLogo.CheckedChanged += new System.EventHandler(this.UseLogo_CheckedChanged);
+      this.checkBoxUseLogo.Click += new System.EventHandler(this.checkBoxUseLogo_Click);
       this.checkBoxUseLogo.MouseHover += new System.EventHandler(this.UseLogo_MouseHover);
       // 
       // label8
@@ -479,23 +490,6 @@
       this.label8.TabIndex = 0;
       this.label8.Text = "Logo properties:";
       // 
-      // fontDialog
-      // 
-      this.fontDialog.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      // 
-      // checkBoxConcurrent
-      // 
-      this.checkBoxConcurrent.AutoSize = true;
-      this.checkBoxConcurrent.Checked = true;
-      this.checkBoxConcurrent.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.checkBoxConcurrent.Location = new System.Drawing.Point(88, 513);
-      this.checkBoxConcurrent.Name = "checkBoxConcurrent";
-      this.checkBoxConcurrent.Size = new System.Drawing.Size(114, 17);
-      this.checkBoxConcurrent.TabIndex = 24;
-      this.checkBoxConcurrent.Text = "Concurrent resize?";
-      this.checkBoxConcurrent.UseVisualStyleBackColor = true;
-      this.checkBoxConcurrent.MouseHover += new System.EventHandler(this.Concurrent_MouseHover);
-      // 
       // panel4
       // 
       this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -506,6 +500,42 @@
       this.panel4.Name = "panel4";
       this.panel4.Size = new System.Drawing.Size(334, 119);
       this.panel4.TabIndex = 18;
+      // 
+      // checkBoxUseCurrentDir
+      // 
+      this.checkBoxUseCurrentDir.AutoSize = true;
+      this.checkBoxUseCurrentDir.Checked = global::GImageResizer.Properties.Settings.Default.useCurrentDir;
+      this.checkBoxUseCurrentDir.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GImageResizer.Properties.Settings.Default, "useCurrentDir", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+      this.checkBoxUseCurrentDir.Location = new System.Drawing.Point(5, 3);
+      this.checkBoxUseCurrentDir.Name = "checkBoxUseCurrentDir";
+      this.checkBoxUseCurrentDir.Size = new System.Drawing.Size(187, 17);
+      this.checkBoxUseCurrentDir.TabIndex = 14;
+      this.checkBoxUseCurrentDir.Text = "Get images from current directory?";
+      this.checkBoxUseCurrentDir.UseVisualStyleBackColor = true;
+      this.checkBoxUseCurrentDir.Click += new System.EventHandler(this.UseCurrentDir_Click);
+      this.checkBoxUseCurrentDir.MouseHover += new System.EventHandler(this.UseCurrentDir_MouseHover);
+      // 
+      // checkBoxConcurrent
+      // 
+      this.checkBoxConcurrent.AutoSize = true;
+      this.checkBoxConcurrent.Checked = global::GImageResizer.Properties.Settings.Default.concurrentResize;
+      this.checkBoxConcurrent.CheckState = System.Windows.Forms.CheckState.Checked;
+      this.checkBoxConcurrent.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GImageResizer.Properties.Settings.Default, "concurrentResize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+      this.checkBoxConcurrent.Location = new System.Drawing.Point(88, 513);
+      this.checkBoxConcurrent.Name = "checkBoxConcurrent";
+      this.checkBoxConcurrent.Size = new System.Drawing.Size(114, 17);
+      this.checkBoxConcurrent.TabIndex = 24;
+      this.checkBoxConcurrent.Text = "Concurrent resize?";
+      this.checkBoxConcurrent.UseVisualStyleBackColor = true;
+      this.checkBoxConcurrent.MouseHover += new System.EventHandler(this.Concurrent_MouseHover);
+      // 
+      // fontDialog
+      // 
+      this.fontDialog.Font = global::GImageResizer.Properties.Settings.Default.logoFont;
+      // 
+      // colorDialog1
+      // 
+      this.colorDialog1.Color = global::GImageResizer.Properties.Settings.Default.logoColor;
       // 
       // MainForm
       // 
@@ -521,6 +551,7 @@
       this.Controls.Add(this.resize_btn);
       this.Name = "MainForm";
       this.Text = "g Image Resizer";
+      this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
       this.panel1.ResumeLayout(false);
       this.panel1.PerformLayout();
       this.panel2.ResumeLayout(false);
@@ -549,7 +580,7 @@
     private System.Windows.Forms.TextBox textBoxSuffix;
     private System.Windows.Forms.Label label3;
     private System.Windows.Forms.Label label4;
-    private System.Windows.Forms.CheckBox keepAspect;
+    private System.Windows.Forms.CheckBox checkBoxKeepAspect;
     private System.Windows.Forms.TextBox fromDir;
     private System.Windows.Forms.Label label5;
     private System.Windows.Forms.Label label6;

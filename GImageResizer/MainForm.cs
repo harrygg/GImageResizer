@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -21,7 +22,7 @@ namespace GImageResizer
     }
 
     IEnumerable<string> files;
-    Font font = new Font("Arial", 30);
+    Font font = new Font(Properties.Settings.Default.logoFont.FontFamily, Properties.Settings.Default.logoFont.Size);
     SolidBrush brush = new SolidBrush(Color.White);
 
     #region MainForm properties
@@ -71,6 +72,7 @@ namespace GImageResizer
       resize_btn.Text = "Resizing...";
       if (bgWorker.IsBusy != true)
         bgWorker.RunWorkerAsync();
+ 
     }
     #endregion 
 
@@ -130,7 +132,7 @@ namespace GImageResizer
       {
         var aspectRatio = Convert.ToDouble(image.Width) / Convert.ToDouble(image.Height);
         int newWidth = Convert.ToInt32(textBoxWidth.Text);
-        int newHeight = keepAspect.Checked ? (int)(newWidth / aspectRatio) : Convert.ToInt16(textBoxHeight.Text);
+        int newHeight = checkBoxKeepAspect.Checked ? (int)(newWidth / aspectRatio) : Convert.ToInt16(textBoxHeight.Text);
 
         var newImage = new Bitmap(newWidth, newHeight);
         Graphics graphics = Graphics.FromImage(newImage);
@@ -164,7 +166,7 @@ namespace GImageResizer
     #endregion
 
     #region Click on the Use current dir checkbox
-    void UseCurrentDir_CheckedChanged(object sender, EventArgs e)
+    void UseCurrentDir_Click(object sender, EventArgs e)
     {
       if (fromDir.Enabled == true)
       {
@@ -262,7 +264,7 @@ namespace GImageResizer
       ColorDialog cd = new ColorDialog();
       cd.AllowFullOpen = false;
       cd.ShowHelp = true;
-      cd.Color = Color.White;
+      //cd.Color = Color.White;
 
       // Update the text box color if the user clicks OK  
       if (cd.ShowDialog() == DialogResult.OK)
@@ -274,16 +276,16 @@ namespace GImageResizer
     #endregion
 
     #region Handle the click on the "Add text to image" checkbox
-    void UseLogo_CheckedChanged(object sender, EventArgs e)
+    void checkBoxUseLogo_Click(object sender, EventArgs e)
     {
       logoInnerPanel.Enabled = checkBoxUseLogo.Checked ? true : false;
     }
     #endregion
 
     #region Handle the click on the "Keep aspect ration" checkbox
-    void keepAspect_CheckedChanged(object sender, EventArgs e)
+    void keepAspect_Click(object sender, EventArgs e)
     {
-      textBoxHeight.Enabled = keepAspect.Checked ? false : true;
+      textBoxHeight.Enabled = checkBoxKeepAspect.Checked ? false : true;
     }
     #endregion
 
@@ -304,7 +306,7 @@ namespace GImageResizer
       toolTip1.Show("The suffix will be appended to the end of all image file names", (Control)sender);
     }
 
-    void RenameImages_CheckedChanged(object sender, EventArgs e)
+    void RenameImages_Click(object sender, EventArgs e)
     {
       textBoxPrefix.Enabled = checkBoxRenameImages.Checked ? true : false;
       textBoxSuffix.Enabled = checkBoxRenameImages.Checked ? true : false;
@@ -336,6 +338,16 @@ namespace GImageResizer
     }
 
     #endregion
+
+    void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+    {
+      Properties.Settings.Default.Save();
+    }
+
+
+
+
+
 
   }
 }

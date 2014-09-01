@@ -42,19 +42,18 @@
       this.browseToDir_btn = new System.Windows.Forms.Button();
       this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
       this.panel1 = new System.Windows.Forms.Panel();
-      this.fromDir = new System.Windows.Forms.TextBox();
       this.panel2 = new System.Windows.Forms.Panel();
-      this.toDir = new System.Windows.Forms.TextBox();
       this.panel3 = new System.Windows.Forms.Panel();
-      this.checkBoxRenameImages = new System.Windows.Forms.CheckBox();
       this.label7 = new System.Windows.Forms.Label();
-      this.textBoxWidth = new System.Windows.Forms.TextBox();
-      this.textBoxHeight = new System.Windows.Forms.TextBox();
-      this.textBoxPrefix = new System.Windows.Forms.TextBox();
-      this.textBoxSuffix = new System.Windows.Forms.TextBox();
-      this.checkBoxKeepAspect = new System.Windows.Forms.CheckBox();
       this.cancel_btn = new System.Windows.Forms.Button();
       this.logoPanel = new System.Windows.Forms.Panel();
+      this.label8 = new System.Windows.Forms.Label();
+      this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+      this.panel4 = new System.Windows.Forms.Panel();
+      this.checkBoxUseCurrentDir = new System.Windows.Forms.CheckBox();
+      this.fromDir = new System.Windows.Forms.TextBox();
+      this.toDir = new System.Windows.Forms.TextBox();
+      this.checkBoxConcurrent = new System.Windows.Forms.CheckBox();
       this.logoInnerPanel = new System.Windows.Forms.Panel();
       this.label2 = new System.Windows.Forms.Label();
       this.label1 = new System.Windows.Forms.Label();
@@ -68,19 +67,21 @@
       this.labelPositionY = new System.Windows.Forms.Label();
       this.chooseFont_btn = new System.Windows.Forms.Button();
       this.checkBoxUseLogo = new System.Windows.Forms.CheckBox();
-      this.label8 = new System.Windows.Forms.Label();
-      this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-      this.panel4 = new System.Windows.Forms.Panel();
-      this.checkBoxUseCurrentDir = new System.Windows.Forms.CheckBox();
-      this.checkBoxConcurrent = new System.Windows.Forms.CheckBox();
+      this.checkBoxRenameImages = new System.Windows.Forms.CheckBox();
+      this.textBoxWidth = new System.Windows.Forms.TextBox();
+      this.textBoxHeight = new System.Windows.Forms.TextBox();
+      this.textBoxPrefix = new System.Windows.Forms.TextBox();
+      this.textBoxSuffix = new System.Windows.Forms.TextBox();
+      this.checkBoxKeepAspect = new System.Windows.Forms.CheckBox();
       this.fontDialog = new System.Windows.Forms.FontDialog();
       this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+      this.preview_btn = new System.Windows.Forms.Button();
       this.panel1.SuspendLayout();
       this.panel2.SuspendLayout();
       this.panel3.SuspendLayout();
       this.logoPanel.SuspendLayout();
-      this.logoInnerPanel.SuspendLayout();
       this.panel4.SuspendLayout();
+      this.logoInnerPanel.SuspendLayout();
       this.SuspendLayout();
       // 
       // resize_btn
@@ -187,18 +188,6 @@
       this.panel1.Size = new System.Drawing.Size(334, 45);
       this.panel1.TabIndex = 19;
       // 
-      // fromDir
-      // 
-      this.fromDir.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GImageResizer.Properties.Settings.Default, "fromDir", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-      this.fromDir.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", global::GImageResizer.Properties.Settings.Default, "fromDirEnabled", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-      this.fromDir.Enabled = global::GImageResizer.Properties.Settings.Default.fromDirEnabled;
-      this.fromDir.Location = new System.Drawing.Point(5, 20);
-      this.fromDir.Name = "fromDir";
-      this.fromDir.Size = new System.Drawing.Size(261, 20);
-      this.fromDir.TabIndex = 10;
-      this.fromDir.Tag = "";
-      this.fromDir.Text = global::GImageResizer.Properties.Settings.Default.fromDir;
-      // 
       // panel2
       // 
       this.panel2.Controls.Add(this.label6);
@@ -208,15 +197,6 @@
       this.panel2.Name = "panel2";
       this.panel2.Size = new System.Drawing.Size(334, 45);
       this.panel2.TabIndex = 20;
-      // 
-      // toDir
-      // 
-      this.toDir.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GImageResizer.Properties.Settings.Default, "toDir", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-      this.toDir.Location = new System.Drawing.Point(5, 21);
-      this.toDir.Name = "toDir";
-      this.toDir.Size = new System.Drawing.Size(261, 20);
-      this.toDir.TabIndex = 13;
-      this.toDir.Text = global::GImageResizer.Properties.Settings.Default.toDir;
       // 
       // panel3
       // 
@@ -237,6 +217,251 @@
       this.panel3.Size = new System.Drawing.Size(334, 164);
       this.panel3.TabIndex = 21;
       // 
+      // label7
+      // 
+      this.label7.AutoSize = true;
+      this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label7.Location = new System.Drawing.Point(2, 5);
+      this.label7.Name = "label7";
+      this.label7.Size = new System.Drawing.Size(133, 13);
+      this.label7.TabIndex = 10;
+      this.label7.Text = "New image properties:";
+      // 
+      // cancel_btn
+      // 
+      this.cancel_btn.Enabled = false;
+      this.cancel_btn.Location = new System.Drawing.Point(265, 504);
+      this.cancel_btn.Name = "cancel_btn";
+      this.cancel_btn.Size = new System.Drawing.Size(76, 33);
+      this.cancel_btn.TabIndex = 22;
+      this.cancel_btn.Text = "Cancel";
+      this.cancel_btn.UseVisualStyleBackColor = true;
+      this.cancel_btn.Click += new System.EventHandler(this.cancel_btn_Click);
+      // 
+      // logoPanel
+      // 
+      this.logoPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+      this.logoPanel.Controls.Add(this.logoInnerPanel);
+      this.logoPanel.Controls.Add(this.checkBoxUseLogo);
+      this.logoPanel.Controls.Add(this.label8);
+      this.logoPanel.Location = new System.Drawing.Point(7, 303);
+      this.logoPanel.Name = "logoPanel";
+      this.logoPanel.Size = new System.Drawing.Size(334, 166);
+      this.logoPanel.TabIndex = 23;
+      // 
+      // label8
+      // 
+      this.label8.AutoSize = true;
+      this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label8.Location = new System.Drawing.Point(4, 4);
+      this.label8.Name = "label8";
+      this.label8.Size = new System.Drawing.Size(99, 13);
+      this.label8.TabIndex = 0;
+      this.label8.Text = "Logo properties:";
+      // 
+      // panel4
+      // 
+      this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+      this.panel4.Controls.Add(this.checkBoxUseCurrentDir);
+      this.panel4.Controls.Add(this.panel1);
+      this.panel4.Controls.Add(this.panel2);
+      this.panel4.Location = new System.Drawing.Point(7, 8);
+      this.panel4.Name = "panel4";
+      this.panel4.Size = new System.Drawing.Size(334, 119);
+      this.panel4.TabIndex = 18;
+      // 
+      // checkBoxUseCurrentDir
+      // 
+      this.checkBoxUseCurrentDir.AutoSize = true;
+      this.checkBoxUseCurrentDir.Checked = global::GImageResizer.Properties.Settings.Default.useCurrentDir;
+      this.checkBoxUseCurrentDir.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GImageResizer.Properties.Settings.Default, "useCurrentDir", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+      this.checkBoxUseCurrentDir.Location = new System.Drawing.Point(5, 3);
+      this.checkBoxUseCurrentDir.Name = "checkBoxUseCurrentDir";
+      this.checkBoxUseCurrentDir.Size = new System.Drawing.Size(187, 17);
+      this.checkBoxUseCurrentDir.TabIndex = 14;
+      this.checkBoxUseCurrentDir.Text = "Get images from current directory?";
+      this.checkBoxUseCurrentDir.UseVisualStyleBackColor = true;
+      this.checkBoxUseCurrentDir.Click += new System.EventHandler(this.UseCurrentDir_Click);
+      this.checkBoxUseCurrentDir.MouseHover += new System.EventHandler(this.UseCurrentDir_MouseHover);
+      // 
+      // fromDir
+      // 
+      this.fromDir.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GImageResizer.Properties.Settings.Default, "fromDir", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+      this.fromDir.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", global::GImageResizer.Properties.Settings.Default, "fromDirEnabled", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+      this.fromDir.Enabled = global::GImageResizer.Properties.Settings.Default.fromDirEnabled;
+      this.fromDir.Location = new System.Drawing.Point(5, 20);
+      this.fromDir.Name = "fromDir";
+      this.fromDir.Size = new System.Drawing.Size(261, 20);
+      this.fromDir.TabIndex = 10;
+      this.fromDir.Tag = "";
+      this.fromDir.Text = global::GImageResizer.Properties.Settings.Default.fromDir;
+      // 
+      // toDir
+      // 
+      this.toDir.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GImageResizer.Properties.Settings.Default, "toDir", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+      this.toDir.Location = new System.Drawing.Point(5, 21);
+      this.toDir.Name = "toDir";
+      this.toDir.Size = new System.Drawing.Size(261, 20);
+      this.toDir.TabIndex = 13;
+      this.toDir.Text = global::GImageResizer.Properties.Settings.Default.toDir;
+      // 
+      // checkBoxConcurrent
+      // 
+      this.checkBoxConcurrent.AutoSize = true;
+      this.checkBoxConcurrent.Checked = global::GImageResizer.Properties.Settings.Default.concurrentResize;
+      this.checkBoxConcurrent.CheckState = System.Windows.Forms.CheckState.Checked;
+      this.checkBoxConcurrent.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GImageResizer.Properties.Settings.Default, "concurrentResize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+      this.checkBoxConcurrent.Location = new System.Drawing.Point(88, 513);
+      this.checkBoxConcurrent.Name = "checkBoxConcurrent";
+      this.checkBoxConcurrent.Size = new System.Drawing.Size(114, 17);
+      this.checkBoxConcurrent.TabIndex = 24;
+      this.checkBoxConcurrent.Text = "Concurrent resize?";
+      this.checkBoxConcurrent.UseVisualStyleBackColor = true;
+      this.checkBoxConcurrent.MouseHover += new System.EventHandler(this.Concurrent_MouseHover);
+      // 
+      // logoInnerPanel
+      // 
+      this.logoInnerPanel.Controls.Add(this.preview_btn);
+      this.logoInnerPanel.Controls.Add(this.label2);
+      this.logoInnerPanel.Controls.Add(this.label1);
+      this.logoInnerPanel.Controls.Add(this.labelPosition);
+      this.logoInnerPanel.Controls.Add(this.textBoxPositionY);
+      this.logoInnerPanel.Controls.Add(this.logoText);
+      this.logoInnerPanel.Controls.Add(this.textBoxPositionX);
+      this.logoInnerPanel.Controls.Add(this.label9);
+      this.logoInnerPanel.Controls.Add(this.chooseColor_btn);
+      this.logoInnerPanel.Controls.Add(this.labelPositionX);
+      this.logoInnerPanel.Controls.Add(this.labelPositionY);
+      this.logoInnerPanel.Controls.Add(this.chooseFont_btn);
+      this.logoInnerPanel.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", global::GImageResizer.Properties.Settings.Default, "logoInnerPanelEnabled", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+      this.logoInnerPanel.Enabled = global::GImageResizer.Properties.Settings.Default.logoInnerPanelEnabled;
+      this.logoInnerPanel.Location = new System.Drawing.Point(3, 47);
+      this.logoInnerPanel.Name = "logoInnerPanel";
+      this.logoInnerPanel.Size = new System.Drawing.Size(326, 114);
+      this.logoInnerPanel.TabIndex = 11;
+      // 
+      // label2
+      // 
+      this.label2.AutoSize = true;
+      this.label2.Location = new System.Drawing.Point(108, 79);
+      this.label2.Name = "label2";
+      this.label2.Size = new System.Drawing.Size(18, 13);
+      this.label2.TabIndex = 13;
+      this.label2.Text = "px";
+      // 
+      // label1
+      // 
+      this.label1.AutoSize = true;
+      this.label1.Location = new System.Drawing.Point(108, 58);
+      this.label1.Name = "label1";
+      this.label1.Size = new System.Drawing.Size(18, 13);
+      this.label1.TabIndex = 12;
+      this.label1.Text = "px";
+      // 
+      // labelPosition
+      // 
+      this.labelPosition.AutoSize = true;
+      this.labelPosition.Location = new System.Drawing.Point(3, 36);
+      this.labelPosition.Name = "labelPosition";
+      this.labelPosition.Size = new System.Drawing.Size(44, 13);
+      this.labelPosition.TabIndex = 11;
+      this.labelPosition.Text = "Position";
+      // 
+      // textBoxPositionY
+      // 
+      this.textBoxPositionY.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GImageResizer.Properties.Settings.Default, "logoY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+      this.textBoxPositionY.Location = new System.Drawing.Point(67, 79);
+      this.textBoxPositionY.Name = "textBoxPositionY";
+      this.textBoxPositionY.Size = new System.Drawing.Size(40, 20);
+      this.textBoxPositionY.TabIndex = 10;
+      this.textBoxPositionY.Text = global::GImageResizer.Properties.Settings.Default.logoY;
+      this.textBoxPositionY.MouseHover += new System.EventHandler(this.PositionY_MouseHover);
+      // 
+      // logoText
+      // 
+      this.logoText.BackColor = System.Drawing.Color.White;
+      this.logoText.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GImageResizer.Properties.Settings.Default, "logoText", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+      this.logoText.Location = new System.Drawing.Point(36, 3);
+      this.logoText.Name = "logoText";
+      this.logoText.Size = new System.Drawing.Size(155, 20);
+      this.logoText.TabIndex = 3;
+      this.logoText.Text = global::GImageResizer.Properties.Settings.Default.logoText;
+      // 
+      // textBoxPositionX
+      // 
+      this.textBoxPositionX.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GImageResizer.Properties.Settings.Default, "logoX", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+      this.textBoxPositionX.Location = new System.Drawing.Point(67, 55);
+      this.textBoxPositionX.Name = "textBoxPositionX";
+      this.textBoxPositionX.Size = new System.Drawing.Size(40, 20);
+      this.textBoxPositionX.TabIndex = 9;
+      this.textBoxPositionX.Text = global::GImageResizer.Properties.Settings.Default.logoX;
+      this.textBoxPositionX.MouseHover += new System.EventHandler(this.PositionX_MouseHover);
+      // 
+      // label9
+      // 
+      this.label9.AutoSize = true;
+      this.label9.Location = new System.Drawing.Point(2, 7);
+      this.label9.Name = "label9";
+      this.label9.Size = new System.Drawing.Size(28, 13);
+      this.label9.TabIndex = 2;
+      this.label9.Text = "Text";
+      // 
+      // chooseColor_btn
+      // 
+      this.chooseColor_btn.DataBindings.Add(new System.Windows.Forms.Binding("ForeColor", global::GImageResizer.Properties.Settings.Default, "logoColor", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+      this.chooseColor_btn.ForeColor = global::GImageResizer.Properties.Settings.Default.logoColor;
+      this.chooseColor_btn.Location = new System.Drawing.Point(248, 1);
+      this.chooseColor_btn.Name = "chooseColor_btn";
+      this.chooseColor_btn.Size = new System.Drawing.Size(45, 23);
+      this.chooseColor_btn.TabIndex = 8;
+      this.chooseColor_btn.Text = "Color";
+      this.chooseColor_btn.UseVisualStyleBackColor = true;
+      this.chooseColor_btn.Click += new System.EventHandler(this.chooseColor_Click);
+      // 
+      // labelPositionX
+      // 
+      this.labelPositionX.AutoSize = true;
+      this.labelPositionX.Location = new System.Drawing.Point(3, 58);
+      this.labelPositionX.Name = "labelPositionX";
+      this.labelPositionX.Size = new System.Drawing.Size(50, 13);
+      this.labelPositionX.TabIndex = 4;
+      this.labelPositionX.Text = "From left:";
+      this.labelPositionX.MouseHover += new System.EventHandler(this.PositionX_MouseHover);
+      // 
+      // labelPositionY
+      // 
+      this.labelPositionY.AutoSize = true;
+      this.labelPositionY.Location = new System.Drawing.Point(3, 82);
+      this.labelPositionY.Name = "labelPositionY";
+      this.labelPositionY.Size = new System.Drawing.Size(51, 13);
+      this.labelPositionY.TabIndex = 7;
+      this.labelPositionY.Text = "From top:";
+      this.labelPositionY.MouseHover += new System.EventHandler(this.PositionY_MouseHover);
+      // 
+      // chooseFont_btn
+      // 
+      this.chooseFont_btn.Location = new System.Drawing.Point(197, 1);
+      this.chooseFont_btn.Name = "chooseFont_btn";
+      this.chooseFont_btn.Size = new System.Drawing.Size(45, 23);
+      this.chooseFont_btn.TabIndex = 6;
+      this.chooseFont_btn.Text = "Font";
+      this.chooseFont_btn.UseVisualStyleBackColor = true;
+      this.chooseFont_btn.Click += new System.EventHandler(this.chooseFont_Click);
+      // 
+      // checkBoxUseLogo
+      // 
+      this.checkBoxUseLogo.AutoSize = true;
+      this.checkBoxUseLogo.Checked = global::GImageResizer.Properties.Settings.Default.useLogo;
+      this.checkBoxUseLogo.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GImageResizer.Properties.Settings.Default, "useLogo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+      this.checkBoxUseLogo.Location = new System.Drawing.Point(7, 24);
+      this.checkBoxUseLogo.Name = "checkBoxUseLogo";
+      this.checkBoxUseLogo.Size = new System.Drawing.Size(214, 17);
+      this.checkBoxUseLogo.TabIndex = 1;
+      this.checkBoxUseLogo.Text = "Add custom text to images (watermark)?";
+      this.checkBoxUseLogo.UseVisualStyleBackColor = true;
+      this.checkBoxUseLogo.Click += new System.EventHandler(this.checkBoxUseLogo_Click);
+      this.checkBoxUseLogo.MouseHover += new System.EventHandler(this.UseLogo_MouseHover);
+      // 
       // checkBoxRenameImages
       // 
       this.checkBoxRenameImages.AutoSize = true;
@@ -250,16 +475,6 @@
       this.checkBoxRenameImages.UseVisualStyleBackColor = true;
       this.checkBoxRenameImages.Click += new System.EventHandler(this.RenameImages_Click);
       this.checkBoxRenameImages.MouseHover += new System.EventHandler(this.RenameImages_MouseHover);
-      // 
-      // label7
-      // 
-      this.label7.AutoSize = true;
-      this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label7.Location = new System.Drawing.Point(2, 5);
-      this.label7.Name = "label7";
-      this.label7.Size = new System.Drawing.Size(133, 13);
-      this.label7.TabIndex = 10;
-      this.label7.Text = "New image properties:";
       // 
       // textBoxWidth
       // 
@@ -319,216 +534,6 @@
       this.checkBoxKeepAspect.UseVisualStyleBackColor = true;
       this.checkBoxKeepAspect.Click += new System.EventHandler(this.keepAspect_Click);
       // 
-      // cancel_btn
-      // 
-      this.cancel_btn.Enabled = false;
-      this.cancel_btn.Location = new System.Drawing.Point(265, 504);
-      this.cancel_btn.Name = "cancel_btn";
-      this.cancel_btn.Size = new System.Drawing.Size(76, 33);
-      this.cancel_btn.TabIndex = 22;
-      this.cancel_btn.Text = "Cancel";
-      this.cancel_btn.UseVisualStyleBackColor = true;
-      this.cancel_btn.Click += new System.EventHandler(this.cancel_btn_Click);
-      // 
-      // logoPanel
-      // 
-      this.logoPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-      this.logoPanel.Controls.Add(this.logoInnerPanel);
-      this.logoPanel.Controls.Add(this.checkBoxUseLogo);
-      this.logoPanel.Controls.Add(this.label8);
-      this.logoPanel.Location = new System.Drawing.Point(7, 303);
-      this.logoPanel.Name = "logoPanel";
-      this.logoPanel.Size = new System.Drawing.Size(334, 166);
-      this.logoPanel.TabIndex = 23;
-      // 
-      // logoInnerPanel
-      // 
-      this.logoInnerPanel.Controls.Add(this.label2);
-      this.logoInnerPanel.Controls.Add(this.label1);
-      this.logoInnerPanel.Controls.Add(this.labelPosition);
-      this.logoInnerPanel.Controls.Add(this.textBoxPositionY);
-      this.logoInnerPanel.Controls.Add(this.logoText);
-      this.logoInnerPanel.Controls.Add(this.textBoxPositionX);
-      this.logoInnerPanel.Controls.Add(this.label9);
-      this.logoInnerPanel.Controls.Add(this.chooseColor_btn);
-      this.logoInnerPanel.Controls.Add(this.labelPositionX);
-      this.logoInnerPanel.Controls.Add(this.labelPositionY);
-      this.logoInnerPanel.Controls.Add(this.chooseFont_btn);
-      this.logoInnerPanel.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", global::GImageResizer.Properties.Settings.Default, "logoInnerPanelEnabled", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-      this.logoInnerPanel.Enabled = global::GImageResizer.Properties.Settings.Default.logoInnerPanelEnabled;
-      this.logoInnerPanel.Location = new System.Drawing.Point(3, 47);
-      this.logoInnerPanel.Name = "logoInnerPanel";
-      this.logoInnerPanel.Size = new System.Drawing.Size(326, 114);
-      this.logoInnerPanel.TabIndex = 11;
-      // 
-      // label2
-      // 
-      this.label2.AutoSize = true;
-      this.label2.Location = new System.Drawing.Point(108, 79);
-      this.label2.Name = "label2";
-      this.label2.Size = new System.Drawing.Size(18, 13);
-      this.label2.TabIndex = 13;
-      this.label2.Text = "px";
-      // 
-      // label1
-      // 
-      this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(108, 58);
-      this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(18, 13);
-      this.label1.TabIndex = 12;
-      this.label1.Text = "px";
-      // 
-      // labelPosition
-      // 
-      this.labelPosition.AutoSize = true;
-      this.labelPosition.Location = new System.Drawing.Point(3, 36);
-      this.labelPosition.Name = "labelPosition";
-      this.labelPosition.Size = new System.Drawing.Size(44, 13);
-      this.labelPosition.TabIndex = 11;
-      this.labelPosition.Text = "Position";
-      // 
-      // textBoxPositionY
-      // 
-      this.textBoxPositionY.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GImageResizer.Properties.Settings.Default, "logoY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-      this.textBoxPositionY.Location = new System.Drawing.Point(67, 79);
-      this.textBoxPositionY.Name = "textBoxPositionY";
-      this.textBoxPositionY.Size = new System.Drawing.Size(40, 20);
-      this.textBoxPositionY.TabIndex = 10;
-      this.textBoxPositionY.Text = global::GImageResizer.Properties.Settings.Default.logoY;
-      this.textBoxPositionY.MouseHover += new System.EventHandler(this.PositionY_MouseHover);
-      // 
-      // logoText
-      // 
-      this.logoText.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GImageResizer.Properties.Settings.Default, "logoText", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-      this.logoText.Location = new System.Drawing.Point(36, 3);
-      this.logoText.Name = "logoText";
-      this.logoText.Size = new System.Drawing.Size(171, 20);
-      this.logoText.TabIndex = 3;
-      this.logoText.Text = global::GImageResizer.Properties.Settings.Default.logoText;
-      // 
-      // textBoxPositionX
-      // 
-      this.textBoxPositionX.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GImageResizer.Properties.Settings.Default, "logoX", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-      this.textBoxPositionX.Location = new System.Drawing.Point(67, 55);
-      this.textBoxPositionX.Name = "textBoxPositionX";
-      this.textBoxPositionX.Size = new System.Drawing.Size(40, 20);
-      this.textBoxPositionX.TabIndex = 9;
-      this.textBoxPositionX.Text = global::GImageResizer.Properties.Settings.Default.logoX;
-      this.textBoxPositionX.MouseHover += new System.EventHandler(this.PositionX_MouseHover);
-      // 
-      // label9
-      // 
-      this.label9.AutoSize = true;
-      this.label9.Location = new System.Drawing.Point(2, 7);
-      this.label9.Name = "label9";
-      this.label9.Size = new System.Drawing.Size(28, 13);
-      this.label9.TabIndex = 2;
-      this.label9.Text = "Text";
-      // 
-      // chooseColor_btn
-      // 
-      this.chooseColor_btn.Location = new System.Drawing.Point(271, 1);
-      this.chooseColor_btn.Name = "chooseColor_btn";
-      this.chooseColor_btn.Size = new System.Drawing.Size(52, 23);
-      this.chooseColor_btn.TabIndex = 8;
-      this.chooseColor_btn.Text = "Color";
-      this.chooseColor_btn.UseVisualStyleBackColor = true;
-      this.chooseColor_btn.Click += new System.EventHandler(this.chooseColor_Click);
-      // 
-      // labelPositionX
-      // 
-      this.labelPositionX.AutoSize = true;
-      this.labelPositionX.Location = new System.Drawing.Point(3, 58);
-      this.labelPositionX.Name = "labelPositionX";
-      this.labelPositionX.Size = new System.Drawing.Size(50, 13);
-      this.labelPositionX.TabIndex = 4;
-      this.labelPositionX.Text = "From left:";
-      this.labelPositionX.MouseHover += new System.EventHandler(this.PositionX_MouseHover);
-      // 
-      // labelPositionY
-      // 
-      this.labelPositionY.AutoSize = true;
-      this.labelPositionY.Location = new System.Drawing.Point(3, 82);
-      this.labelPositionY.Name = "labelPositionY";
-      this.labelPositionY.Size = new System.Drawing.Size(51, 13);
-      this.labelPositionY.TabIndex = 7;
-      this.labelPositionY.Text = "From top:";
-      this.labelPositionY.MouseHover += new System.EventHandler(this.PositionY_MouseHover);
-      // 
-      // chooseFont_btn
-      // 
-      this.chooseFont_btn.Location = new System.Drawing.Point(213, 1);
-      this.chooseFont_btn.Name = "chooseFont_btn";
-      this.chooseFont_btn.Size = new System.Drawing.Size(52, 23);
-      this.chooseFont_btn.TabIndex = 6;
-      this.chooseFont_btn.Text = "Font";
-      this.chooseFont_btn.UseVisualStyleBackColor = true;
-      this.chooseFont_btn.Click += new System.EventHandler(this.chooseFont_Click);
-      // 
-      // checkBoxUseLogo
-      // 
-      this.checkBoxUseLogo.AutoSize = true;
-      this.checkBoxUseLogo.Checked = global::GImageResizer.Properties.Settings.Default.useLogo;
-      this.checkBoxUseLogo.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GImageResizer.Properties.Settings.Default, "useLogo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-      this.checkBoxUseLogo.Location = new System.Drawing.Point(7, 24);
-      this.checkBoxUseLogo.Name = "checkBoxUseLogo";
-      this.checkBoxUseLogo.Size = new System.Drawing.Size(214, 17);
-      this.checkBoxUseLogo.TabIndex = 1;
-      this.checkBoxUseLogo.Text = "Add custom text to images (watermark)?";
-      this.checkBoxUseLogo.UseVisualStyleBackColor = true;
-      this.checkBoxUseLogo.Click += new System.EventHandler(this.checkBoxUseLogo_Click);
-      this.checkBoxUseLogo.MouseHover += new System.EventHandler(this.UseLogo_MouseHover);
-      // 
-      // label8
-      // 
-      this.label8.AutoSize = true;
-      this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label8.Location = new System.Drawing.Point(4, 4);
-      this.label8.Name = "label8";
-      this.label8.Size = new System.Drawing.Size(99, 13);
-      this.label8.TabIndex = 0;
-      this.label8.Text = "Logo properties:";
-      // 
-      // panel4
-      // 
-      this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-      this.panel4.Controls.Add(this.checkBoxUseCurrentDir);
-      this.panel4.Controls.Add(this.panel1);
-      this.panel4.Controls.Add(this.panel2);
-      this.panel4.Location = new System.Drawing.Point(7, 8);
-      this.panel4.Name = "panel4";
-      this.panel4.Size = new System.Drawing.Size(334, 119);
-      this.panel4.TabIndex = 18;
-      // 
-      // checkBoxUseCurrentDir
-      // 
-      this.checkBoxUseCurrentDir.AutoSize = true;
-      this.checkBoxUseCurrentDir.Checked = global::GImageResizer.Properties.Settings.Default.useCurrentDir;
-      this.checkBoxUseCurrentDir.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GImageResizer.Properties.Settings.Default, "useCurrentDir", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-      this.checkBoxUseCurrentDir.Location = new System.Drawing.Point(5, 3);
-      this.checkBoxUseCurrentDir.Name = "checkBoxUseCurrentDir";
-      this.checkBoxUseCurrentDir.Size = new System.Drawing.Size(187, 17);
-      this.checkBoxUseCurrentDir.TabIndex = 14;
-      this.checkBoxUseCurrentDir.Text = "Get images from current directory?";
-      this.checkBoxUseCurrentDir.UseVisualStyleBackColor = true;
-      this.checkBoxUseCurrentDir.Click += new System.EventHandler(this.UseCurrentDir_Click);
-      this.checkBoxUseCurrentDir.MouseHover += new System.EventHandler(this.UseCurrentDir_MouseHover);
-      // 
-      // checkBoxConcurrent
-      // 
-      this.checkBoxConcurrent.AutoSize = true;
-      this.checkBoxConcurrent.Checked = global::GImageResizer.Properties.Settings.Default.concurrentResize;
-      this.checkBoxConcurrent.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.checkBoxConcurrent.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GImageResizer.Properties.Settings.Default, "concurrentResize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-      this.checkBoxConcurrent.Location = new System.Drawing.Point(88, 513);
-      this.checkBoxConcurrent.Name = "checkBoxConcurrent";
-      this.checkBoxConcurrent.Size = new System.Drawing.Size(114, 17);
-      this.checkBoxConcurrent.TabIndex = 24;
-      this.checkBoxConcurrent.Text = "Concurrent resize?";
-      this.checkBoxConcurrent.UseVisualStyleBackColor = true;
-      this.checkBoxConcurrent.MouseHover += new System.EventHandler(this.Concurrent_MouseHover);
-      // 
       // fontDialog
       // 
       this.fontDialog.Font = global::GImageResizer.Properties.Settings.Default.logoFont;
@@ -536,6 +541,17 @@
       // colorDialog1
       // 
       this.colorDialog1.Color = global::GImageResizer.Properties.Settings.Default.logoColor;
+      // 
+      // preview_btn
+      // 
+      this.preview_btn.Location = new System.Drawing.Point(268, 88);
+      this.preview_btn.Name = "preview_btn";
+      this.preview_btn.Size = new System.Drawing.Size(55, 23);
+      this.preview_btn.TabIndex = 14;
+      this.preview_btn.Text = "Preview";
+      this.preview_btn.UseVisualStyleBackColor = true;
+      this.preview_btn.Click += new System.EventHandler(this.preview_btn_Click);
+      this.preview_btn.MouseHover += new System.EventHandler(this.preview_btn_MouseHover);
       // 
       // MainForm
       // 
@@ -560,10 +576,10 @@
       this.panel3.PerformLayout();
       this.logoPanel.ResumeLayout(false);
       this.logoPanel.PerformLayout();
-      this.logoInnerPanel.ResumeLayout(false);
-      this.logoInnerPanel.PerformLayout();
       this.panel4.ResumeLayout(false);
       this.panel4.PerformLayout();
+      this.logoInnerPanel.ResumeLayout(false);
+      this.logoInnerPanel.PerformLayout();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -617,6 +633,7 @@
     private System.Windows.Forms.Label label2;
     private System.Windows.Forms.Label label1;
     private System.Windows.Forms.Panel panel4;
+    private System.Windows.Forms.Button preview_btn;
   }
 }
 

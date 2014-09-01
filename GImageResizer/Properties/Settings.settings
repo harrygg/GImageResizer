@@ -45,7 +45,7 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="logoColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">White</Value>
+      <Value Profile="(Default)">ControlText</Value>
     </Setting>
     <Setting Name="logoFont" Type="System.Drawing.Font" Scope="User">
       <Value Profile="(Default)">Arial, 36pt</Value>

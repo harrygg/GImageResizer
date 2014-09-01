@@ -21,9 +21,10 @@ namespace GImageResizer
       InitializeBackgroundWorker();
     }
 
-    IEnumerable<string> files;
+    IEnumerable<String> files;
     Font font = new Font(Properties.Settings.Default.logoFont.FontFamily, Properties.Settings.Default.logoFont.Size);
-    SolidBrush brush = new SolidBrush(Color.White);
+    SolidBrush brush = new SolidBrush(Properties.Settings.Default.logoColor);
+    String newFilePath;
 
     #region MainForm properties
     int LogoPositionX
@@ -42,40 +43,22 @@ namespace GImageResizer
     {
       resize_btn.Enabled = false;
 
-      if (!Directory.Exists(fromDir.Text))
+      if (GetFilesFromDir())
       {
-        MessageBox.Show("Selected folder does not exist!");
-        resize_btn.Enabled = true;
-        return;
+        // Reset the progress bar
+        progressBar.Value = 0;
+
+        if (!Directory.Exists(toDir.Text))
+          Directory.CreateDirectory(toDir.Text);
+
+        cancel_btn.Enabled = true;
+        resize_btn.Text = "Resizing...";
+        if (bgWorker.IsBusy != true)
+          bgWorker.RunWorkerAsync();
       }
-
-      files = Directory.EnumerateFiles(fromDir.Text, "*.*")
-        .Where(s => s.EndsWith(".jpeg", StringComparison.OrdinalIgnoreCase) || s.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) || s.EndsWith(".png", StringComparison.OrdinalIgnoreCase));
-
-      int selectedFiles = files.ToList<string>().Count;
-      if (selectedFiles == 0)
-      {
-        MessageBox.Show("No images found in the selected directory!");
-        resize_btn.Enabled = true;
-        return;
-      }
-
-      // Set the progress bar max value to the number of images we have to handle
-      progressBar.Maximum = selectedFiles;
-      // Reset the progress bar
-      progressBar.Value = 0;
-
-      if (!Directory.Exists(toDir.Text))
-        Directory.CreateDirectory(toDir.Text);
-
-      cancel_btn.Enabled = true;
-      resize_btn.Text = "Resizing...";
-      if (bgWorker.IsBusy != true)
-        bgWorker.RunWorkerAsync();
  
     }
     #endregion 
-
 
     #region Scale images
     private void ScaleImages(BackgroundWorker worker, DoWorkEventArgs e)
@@ -95,11 +78,11 @@ namespace GImageResizer
       }
     }
     #endregion
-    
+
     #region Resize image, add text and name if needed
     void ResizeImageAddLogo(BackgroundWorker worker, DoWorkEventArgs e, string file)
     {
-      if (worker.CancellationPending)
+      if (worker != null && worker.CancellationPending)
         e.Cancel = true;
       else
       {
@@ -111,12 +94,13 @@ namespace GImageResizer
 
           //If needed change the image file name by adding a prefix and suffix
           var fileName = checkBoxRenameImages.Checked ? textBoxPrefix.Text.Trim() + Path.GetFileNameWithoutExtension(file) + textBoxSuffix.Text.Trim() + Path.GetExtension(file) : Path.GetFileName(file);
-          var newFilePath = Path.Combine(toDir.Text, fileName);
+          newFilePath = Path.Combine(toDir.Text, fileName);
 
           if (newImage != null)
           {
             newImage.Save(newFilePath, ImageFormat.Jpeg);
-            worker.ReportProgress(1);
+            if (worker != null)
+              worker.ReportProgress(1);
             newImage.Dispose();
           }
         }
@@ -255,6 +239,8 @@ namespace GImageResizer
     {
       if (fontDialog.ShowDialog() != DialogResult.Cancel)
         font = fontDialog.Font;
+        Properties.Settings.Default.logoFont = font;
+        Properties.Settings.Default.Save();        
     }
     #endregion
 
@@ -269,8 +255,10 @@ namespace GImageResizer
       // Update the text box color if the user clicks OK  
       if (cd.ShowDialog() == DialogResult.OK)
       {
-        logoText.ForeColor = cd.Color;
+        chooseColor_btn.ForeColor = cd.Color;
         brush.Color = cd.Color;
+        Properties.Settings.Default.logoColor = cd.Color;
+        Properties.Settings.Default.Save();    
       }
     }
     #endregion
@@ -337,17 +325,61 @@ namespace GImageResizer
       toolTip1.Show("Add custom message to the image", (Control)sender);
     }
 
+    void preview_btn_MouseHover(object sender, EventArgs e)
+    {
+      toolTip1.Show("Render and preview the first image in the folder", (Control)sender);
+    }
     #endregion
 
+    #region Save the settings when the form is closed
     void MainForm_FormClosed(object sender, FormClosedEventArgs e)
     {
       Properties.Settings.Default.Save();
     }
 
+    void preview_btn_Click(object sender, EventArgs e)
+    {
+      if (GetFilesFromDir())
+      {
+        ResizeImageAddLogo(null, null, files.ToArray()[0]);
+        if (!String.IsNullOrEmpty(newFilePath))
+          Process.Start(newFilePath);
+        else
+          MessageBox.Show("Error during preview generation!");
+      }
+    }
+    #endregion
 
+    #region Count the images from the selected directory
+    /// <summary>
+    /// Count the images from the selected directory.
+    /// Raise errors if no images are found or directory doesn't exist
+    /// </summary>
+    /// <returns></returns>
+    bool GetFilesFromDir()
+    {
+      if (!Directory.Exists(fromDir.Text))
+      {
+        MessageBox.Show("Selected folder does not exist!");
+        resize_btn.Enabled = true;
+        return false;
+      }
 
+      files = Directory.EnumerateFiles(fromDir.Text, "*.*")
+        .Where(s => s.EndsWith(".jpeg", StringComparison.OrdinalIgnoreCase) || s.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) || s.EndsWith(".png", StringComparison.OrdinalIgnoreCase));
 
+      int selectedFiles = files.ToList<string>().Count;
+      if (selectedFiles == 0)
+      {
+        MessageBox.Show("No images found in the selected directory!");
+        resize_btn.Enabled = true;
+        return false;
+      }
 
-
+      // Set the progress bar max value to the number of images we have to handle
+      progressBar.Maximum = selectedFiles;
+      return true;
+    }
+    #endregion
   }
 }

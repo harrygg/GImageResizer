@@ -193,7 +193,7 @@ namespace GImageResizer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        [global::System.Configuration.DefaultSettingValueAttribute("ControlText")]
         public global::System.Drawing.Color logoColor {
             get {
                 return ((global::System.Drawing.Color)(this["logoColor"]));
